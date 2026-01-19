@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Jadwal Kegiatan Stadion Pakansari - UPT Paspor Pakansari"
+    />
+    <title>Jadwal Stadion Pakansari</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="background-overlay"></div>
+
+    <div class="container">
+      <!-- Header Section -->
+      <header class="header">
+        <div class="header-content">
+          <div class="logo-section">
+            <div class="logo-icon">
+              <svg
+                viewBox="0 0 100 100"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="45"
+                  stroke="currentColor"
+                  stroke-width="3"
+                />
+                <ellipse
+                  cx="50"
+                  cy="50"
+                  rx="45"
+                  ry="20"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M20 50 Q50 30 80 50 Q50 70 20 50"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                />
+                <circle cx="50" cy="50" r="8" fill="currentColor" />
+              </svg>
+            </div>
+            <div class="title-section">
+              <h1 class="main-title">JADWAL STADION PAKANSARI</h1>
+              <p class="subtitle">
+                Unit Pelaksana Teknis Paspor Pakansari - Kabupaten Bogor
+              </p>
+            </div>
+          </div>
+          <div class="datetime-section">
+            <div class="current-date" id="currentDate"></div>
+            <div class="current-time" id="currentTime"></div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Schedule Table Section -->
+      <main class="main-content">
+        <div class="table-container">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th class="col-no">NO</th>
+                <th class="col-date">HARI / TANGGAL</th>
+                <th class="col-activity">URAIAN KEGIATAN</th>
+                <th class="col-time">WAKTU</th>
+                <th class="col-notes">KETERANGAN</th>
+              </tr>
+            </thead>
+            <tbody id="scheduleBody">
+              <!-- Schedule data will be inserted here -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState" style="display: none">
+          <div class="empty-icon">📅</div>
+          <p>Tidak ada jadwal kegiatan untuk ditampilkan</p>
+        </div>
+      </main>
+
+      <!-- Announcement Marquee -->
+      <div class="announcement-bar" id="announcementBar" style="display: none;">
+        <div class="announcement-icon">📢</div>
+        <div class="announcement-marquee">
+          <span id="announcementText"></span>
+        </div>
+      </div>
+
+      <!-- Footer Section -->
+      <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-left">
+            <span class="footer-text"
+              >© 2024 UPT Paspor Pakansari - Kabupaten Bogor</span
+            >
+          </div>
+          <div class="footer-right">
+            <div class="status-indicator">
+              <span class="status-dot"></span>
+              <span class="status-text">Live Display</span>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- TV Mode Toggle Button (for testing) -->
+    <button class="tv-mode-btn" id="tvModeBtn" title="Toggle TV Mode">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <rect x="2" y="7" width="20" height="15" rx="2" ry="2" />
+        <polyline points="17 2 12 7 7 2" />
+      </svg>
+    </button>
+
+    <!-- Admin Panel Button -->
+    <a href="admin.html" class="admin-btn" id="adminBtn" title="Admin Panel">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/>
+        <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>
+      </svg>
+    </a>
+
+    <script src="app.js"></script>
+  </body>
+</html>

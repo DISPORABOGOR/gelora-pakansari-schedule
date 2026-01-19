@@ -1,0 +1,742 @@
+/* ============================================
+   STADION PAKANSARI SCHEDULE - STYLESHEET
+   Optimized for TV Display via HDMI
+   ============================================ */
+
+/* CSS Variables - Design Tokens */
+:root {
+  /* Primary Colors */
+  --primary-gradient: linear-gradient(
+    135deg,
+    #1a5f7a 0%,
+    #086375 50%,
+    #003d5b 100%
+  );
+  --accent-color: #00d4aa;
+  --accent-glow: rgba(0, 212, 170, 0.3);
+
+  /* Background Colors */
+  --bg-dark: #0a1628;
+  --bg-card: rgba(15, 30, 55, 0.95);
+  --bg-table-header: linear-gradient(135deg, #1a5f7a 0%, #086375 100%);
+  --bg-table-row-odd: rgba(20, 40, 70, 0.6);
+  --bg-table-row-even: rgba(25, 50, 85, 0.4);
+  --bg-table-row-hover: rgba(0, 212, 170, 0.1);
+
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.85);
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --text-accent: #00d4aa;
+
+  /* Border Colors */
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-accent: rgba(0, 212, 170, 0.3);
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 30px rgba(0, 212, 170, 0.2);
+
+  /* Typography */
+  --font-family:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-size-xs: 0.875rem;
+  --font-size-sm: 1rem;
+  --font-size-md: 1.25rem;
+  --font-size-lg: 1.5rem;
+  --font-size-xl: 2rem;
+  --font-size-2xl: 2.5rem;
+  --font-size-3xl: 3rem;
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* Reset & Base Styles */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Animated Background */
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(
+      ellipse at 20% 20%,
+      rgba(26, 95, 122, 0.3) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 80% 80%,
+      rgba(0, 212, 170, 0.15) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 50% 50%,
+      rgba(8, 99, 117, 0.2) 0%,
+      transparent 70%
+    );
+  pointer-events: none;
+  z-index: 0;
+  animation: backgroundPulse 15s ease-in-out infinite;
+}
+
+@keyframes backgroundPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Main Container */
+.container {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-md);
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   HEADER SECTION
+   ============================================ */
+.header {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(10px);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.logo-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--primary-gradient);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-glow);
+  animation: logoGlow 3s ease-in-out infinite;
+}
+
+@keyframes logoGlow {
+  0%,
+  100% {
+    box-shadow: var(--shadow-glow);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 212, 170, 0.4);
+  }
+}
+
+.logo-icon svg {
+  width: 50px;
+  height: 50px;
+}
+
+.title-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.main-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 800;
+  background: linear-gradient(
+    135deg,
+    var(--text-primary) 0%,
+    var(--text-accent) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-size: var(--font-size-md);
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.datetime-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--spacing-xs);
+}
+
+.current-date {
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.current-time {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--text-accent);
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 20px var(--accent-glow);
+}
+
+/* ============================================
+   MAIN CONTENT & TABLE
+   ============================================ */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.table-container {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+/* Table Header */
+.schedule-table thead {
+  background: var(--bg-table-header);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.schedule-table th {
+  padding: var(--spacing-md) var(--spacing-sm);
+  text-align: left;
+  font-weight: 700;
+  font-size: var(--font-size-md);
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-bottom: 3px solid var(--accent-color);
+}
+
+/* Column Widths */
+.col-no {
+  width: 6%;
+  text-align: center !important;
+}
+.col-date {
+  width: 18%;
+}
+.col-activity {
+  width: 38%;
+}
+.col-time {
+  width: 15%;
+  text-align: center !important;
+}
+.col-notes {
+  width: 23%;
+}
+
+/* Table Body */
+.schedule-table tbody tr {
+  transition: all var(--transition-normal);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.schedule-table tbody tr:nth-child(odd) {
+  background: var(--bg-table-row-odd);
+}
+
+.schedule-table tbody tr:nth-child(even) {
+  background: var(--bg-table-row-even);
+}
+
+.schedule-table tbody tr:hover {
+  background: var(--bg-table-row-hover);
+  transform: scale(1.005);
+  box-shadow: inset 0 0 0 1px var(--border-accent);
+}
+
+.schedule-table td {
+  padding: var(--spacing-md) var(--spacing-sm);
+  font-size: var(--font-size-md);
+  color: var(--text-secondary);
+  vertical-align: middle;
+}
+
+.schedule-table td.cell-no {
+  text-align: center;
+  font-weight: 700;
+  color: var(--text-accent);
+  font-size: var(--font-size-lg);
+}
+
+.schedule-table td.cell-date {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.schedule-table td.cell-activity {
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.schedule-table td.cell-time {
+  text-align: center;
+  font-weight: 600;
+  color: var(--text-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.schedule-table td.cell-notes {
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* Activity Highlight */
+.activity-highlight {
+  display: inline-block;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 212, 170, 0.2) 0%,
+    rgba(0, 212, 170, 0.1) 100%
+  );
+  padding: 2px 8px;
+  border-radius: 4px;
+  border-left: 3px solid var(--accent-color);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--text-muted);
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: var(--spacing-md);
+  opacity: 0.5;
+}
+
+.empty-state p {
+  font-size: var(--font-size-lg);
+}
+
+/* ============================================
+   FOOTER SECTION
+   ============================================ */
+.footer {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin-top: var(--spacing-md);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(10px);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-text {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.status-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 10px var(--accent-color);
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(0.9);
+  }
+}
+
+.status-text {
+  font-size: var(--font-size-sm);
+  color: var(--text-accent);
+  font-weight: 600;
+}
+
+/* ============================================
+   ANNOUNCEMENT BAR (MARQUEE)
+   ============================================ */
+.announcement-bar {
+  background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-sm) var(--spacing-md);
+  margin-top: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.announcement-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.announcement-marquee {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.announcement-marquee span {
+  display: inline-block;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: white;
+  animation: marquee 20s linear infinite;
+  padding-left: 100%;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+body.tv-mode .announcement-bar {
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+body.tv-mode .announcement-marquee span {
+  font-size: var(--font-size-xl);
+}
+
+/* ============================================
+   TV MODE BUTTON
+   ============================================ */
+.tv-mode-btn {
+  position: fixed;
+  bottom: var(--spacing-lg);
+  right: var(--spacing-lg);
+  width: 56px;
+  height: 56px;
+  background: var(--primary-gradient);
+  border: none;
+  border-radius: 50%;
+  color: var(--text-primary);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tv-mode-btn:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-glow);
+}
+
+.tv-mode-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* ============================================
+   ADMIN BUTTON
+   ============================================ */
+.admin-btn {
+  position: fixed;
+  bottom: var(--spacing-lg);
+  right: calc(var(--spacing-lg) + 70px);
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+  border: none;
+  border-radius: 50%;
+  color: var(--text-primary);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.admin-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(243, 156, 18, 0.4);
+}
+
+.admin-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+body.tv-mode .admin-btn {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ============================================
+   TV MODE STYLES (Full Screen Optimization)
+   ============================================ */
+body.tv-mode {
+  cursor: none;
+}
+
+body.tv-mode .container {
+  padding: var(--spacing-lg);
+}
+
+body.tv-mode .main-title {
+  font-size: var(--font-size-3xl);
+}
+
+body.tv-mode .schedule-table th,
+body.tv-mode .schedule-table td {
+  padding: var(--spacing-lg) var(--spacing-md);
+  font-size: var(--font-size-lg);
+}
+
+body.tv-mode .tv-mode-btn {
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.tv-mode .current-time {
+  font-size: 4rem;
+}
+
+/* ============================================
+   ROW ANIMATIONS
+   ============================================ */
+.schedule-table tbody tr {
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+}
+
+.schedule-table tbody tr:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.schedule-table tbody tr:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.schedule-table tbody tr:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.schedule-table tbody tr:nth-child(4) {
+  animation-delay: 0.25s;
+}
+.schedule-table tbody tr:nth-child(5) {
+  animation-delay: 0.3s;
+}
+.schedule-table tbody tr:nth-child(6) {
+  animation-delay: 0.35s;
+}
+.schedule-table tbody tr:nth-child(7) {
+  animation-delay: 0.4s;
+}
+.schedule-table tbody tr:nth-child(8) {
+  animation-delay: 0.45s;
+}
+.schedule-table tbody tr:nth-child(9) {
+  animation-delay: 0.5s;
+}
+.schedule-table tbody tr:nth-child(10) {
+  animation-delay: 0.55s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 1400px) {
+  :root {
+    --font-size-md: 1.1rem;
+    --font-size-lg: 1.3rem;
+    --font-size-xl: 1.75rem;
+    --font-size-2xl: 2rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .logo-section {
+    flex-direction: column;
+  }
+
+  .datetime-section {
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --font-size-md: 1rem;
+    --font-size-lg: 1.2rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 1.75rem;
+  }
+
+  .container {
+    padding: var(--spacing-sm);
+  }
+
+  .schedule-table th,
+  .schedule-table td {
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+  }
+
+  .col-notes {
+    display: none;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .background-overlay,
+  .tv-mode-btn {
+    display: none;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .header,
+  .table-container,
+  .footer {
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: none;
+  }
+
+  .main-title {
+    color: #333;
+    -webkit-text-fill-color: #333;
+  }
+
+  .schedule-table th {
+    background: #f5f5f5;
+    color: #333;
+  }
+
+  .schedule-table td {
+    color: #333;
+  }
+}

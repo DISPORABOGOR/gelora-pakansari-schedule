@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admin Panel - Jadwal Stadion Pakansari">
+    <title>Admin - Jadwal Stadion Pakansari</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="background-overlay"></div>
+    
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/>
+                            <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>
+                        </svg>
+                    </div>
+                    <div class="title-section">
+                        <h1 class="main-title">ADMIN PANEL</h1>
+                        <p class="subtitle">Kelola Jadwal Stadion Pakansari</p>
+                    </div>
+                </div>
+                <div class="nav-section">
+                    <a href="index.html" class="nav-btn" id="viewDisplayBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                        Lihat Display
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Add/Edit Form Card -->
+            <div class="card form-card">
+                <div class="card-header">
+                    <h2 id="formTitle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                        Tambah Jadwal Baru
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <form id="scheduleForm">
+                        <input type="hidden" id="editId" value="">
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="hari">Hari</label>
+                                <select id="hari" required>
+                                    <option value="">Pilih Hari</option>
+                                    <option value="Senin">Senin</option>
+                                    <option value="Selasa">Selasa</option>
+                                    <option value="Rabu">Rabu</option>
+                                    <option value="Kamis">Kamis</option>
+                                    <option value="Jumat">Jumat</option>
+                                    <option value="Sabtu">Sabtu</option>
+                                    <option value="Minggu">Minggu</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="tanggal">Tanggal</label>
+                                <input type="date" id="tanggal" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="kegiatan">Uraian Kegiatan</label>
+                            <input type="text" id="kegiatan" placeholder="Masukkan nama kegiatan..." required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="waktuMulai">Waktu Mulai</label>
+                                <input type="time" id="waktuMulai" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="waktuSelesai">Waktu Selesai</label>
+                                <input type="time" id="waktuSelesai" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="keterangan">Keterangan</label>
+                            <textarea id="keterangan" rows="2" placeholder="Keterangan tambahan (opsional)"></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="cancelBtn" style="display: none;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18"/>
+                                    <line x1="6" y1="6" x2="18" y2="18"/>
+                                </svg>
+                                Batal
+                            </button>
+                            <button type="submit" class="btn btn-primary" id="submitBtn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span id="submitBtnText">Simpan Jadwal</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Schedule List Card -->
+            <div class="card list-card">
+                <div class="card-header">
+                    <h2>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="8" y1="6" x2="21" y2="6"/>
+                            <line x1="8" y1="12" x2="21" y2="12"/>
+                            <line x1="8" y1="18" x2="21" y2="18"/>
+                            <line x1="3" y1="6" x2="3.01" y2="6"/>
+                            <line x1="3" y1="12" x2="3.01" y2="12"/>
+                            <line x1="3" y1="18" x2="3.01" y2="18"/>
+                        </svg>
+                        Daftar Jadwal
+                    </h2>
+                    <div class="card-actions">
+                        <div class="search-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            </svg>
+                            <input type="text" id="searchInput" placeholder="Cari jadwal...">
+                        </div>
+                        <span class="badge" id="totalCount">0 jadwal</span>
+                        <button class="btn btn-info btn-sm" id="exportBtn" title="Export Data (Backup)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                        </button>
+                        <label class="btn btn-warning btn-sm" id="importLabel" title="Import Data (Restore)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                                <polyline points="17 8 12 3 7 8"/>
+                                <line x1="12" y1="3" x2="12" y2="15"/>
+                            </svg>
+                            <input type="file" id="importInput" accept=".json" style="display: none;">
+                        </label>
+                        <button class="btn btn-success btn-sm" id="printBtn" title="Cetak Jadwal">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 6 2 18 2 18 9"/>
+                                <path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
+                                <rect x="6" y="14" width="12" height="8"/>
+                            </svg>
+                        </button>
+                        <button class="btn btn-danger btn-sm" id="clearAllBtn" title="Hapus Semua">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="3 6 5 6 21 6"/>
+                                <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+                            </svg>
+                        </button>
+                        <button class="btn btn-secondary btn-sm" id="resetSampleBtn" title="Reset Data Contoh">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="1 4 1 10 7 10"/>
+                                <path d="M3.51 15a9 9 0 102.13-9.36L1 10"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="schedule-list" id="scheduleList">
+                        <!-- Schedule items will be inserted here -->
+                    </div>
+                    
+                    <!-- Empty State -->
+                    <div class="empty-state" id="emptyState" style="display: none;">
+                        <div class="empty-icon">📅</div>
+                        <p>Belum ada jadwal</p>
+                        <span>Tambahkan jadwal baru menggunakan form di atas</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Announcement Card -->
+            <div class="card announcement-card">
+                <div class="card-header">
+                    <h2>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        Pengumuman (Running Text)
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="announcementText">Teks Pengumuman</label>
+                        <textarea id="announcementText" rows="3" placeholder="Masukkan teks pengumuman yang akan berjalan di display TV..."></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="announcementEnabled">
+                                Aktifkan Pengumuman
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-primary" id="saveAnnouncementBtn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            Simpan Pengumuman
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <span class="footer-text">© 2024 UPT Paspor Pakansari - Kabupaten Bogor</span>
+                <span class="footer-text">Admin Panel v1.0</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <span class="toast-icon" id="toastIcon">✓</span>
+            <span class="toast-message" id="toastMessage">Berhasil!</span>
+        </div>
+    </div>
+
+    <!-- Confirm Modal -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modalTitle">Konfirmasi</h3>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage">Apakah Anda yakin?</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="modalCancel">Batal</button>
+                <button class="btn btn-danger" id="modalConfirm">Hapus</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
